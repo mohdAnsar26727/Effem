@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:width="90dp" android:height="90dp">
+            <gradient android:startColor="#DA0000" android:centerColor="#47FF0000" android:gradientRadius="35dp" android:endColor="#00FFFFFF" android:type="radial"/>
+            <corners android:radius="100dp"/>
+        </shape>
+    </item>
+    <item android:width="70dp" android:height="70dp" android:drawable="@drawable/ic_baseline_stop_circle_70"/>
+</layer-list>

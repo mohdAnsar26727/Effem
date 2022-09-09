@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_100.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_200.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_70.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_filled_100.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_filled_200.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_power_settings_new_35.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_power_settings_new_50.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/ic_baseline_stop_circle_70.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/pause_button.xml" value="0.186" />
+        <entry key="app/src/main/res/drawable/play_button.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/power_button.xml" value="0.2305" />
+        <entry key="app/src/main/res/drawable/power_off_100dp.xml" value="0.17" />
+        <entry key="app/src/main/res/drawable/rounded_transparent_black_bg.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/exo_control.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/radio_item.xml" value="0.67" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
