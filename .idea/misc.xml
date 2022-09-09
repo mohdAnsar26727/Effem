@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/black_bg.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_100.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_200.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/ic_baseline_pause_circle_filled_70.xml" value="0.17" />
@@ -17,7 +18,10 @@
         <entry key="app/src/main/res/drawable/power_button.xml" value="0.2305" />
         <entry key="app/src/main/res/drawable/power_off_100dp.xml" value="0.17" />
         <entry key="app/src/main/res/drawable/rounded_transparent_black_bg.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/rounded_transparent_black_bg2.xml" value="0.349" />
+        <entry key="app/src/main/res/drawable/rv_bg.xml" value="0.348" />
+        <entry key="app/src/main/res/drawable/vis_bg.xml" value="0.3495" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/exo_control.xml" value="0.2" />
         <entry key="app/src/main/res/layout/radio_item.xml" value="0.67" />
       </map>

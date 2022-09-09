@@ -1,24 +1,73 @@
 package com.max.effem
 
 import android.app.Activity
+import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
+import com.egeniq.exovisualizer.FFTAudioProcessor
+import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.audio.*
+import com.google.android.exoplayer2.mediacodec.MediaCodecSelector
+import com.max.akshvni.RadioListAdapter
+import com.max.akshvni.RadioListAdapter.Companion.radioList
+import com.max.akshvni.data.RadioData
 import com.max.effem.databinding.ActivityHomeBinding
 
 
 class HomeActivity : Activity() {
-    private val _player by lazy { ExoPlayer.Builder(applicationContext).build() }
+    private val fftAudioProcessor = FFTAudioProcessor()
+    private val _player by lazy {
+        val renderersFactory = object : DefaultRenderersFactory(applicationContext) {
+            override fun buildAudioRenderers(
+                context: Context,
+                extensionRendererMode: Int,
+                mediaCodecSelector: MediaCodecSelector,
+                enableDecoderFallback: Boolean,
+                audioSink: AudioSink,
+                eventHandler: Handler,
+                eventListener: AudioRendererEventListener,
+                out: ArrayList<Renderer>
+            ) {
+                out.add(
+                    MediaCodecAudioRenderer(
+                        context,
+                        mediaCodecSelector,
+                        enableDecoderFallback,
+                        eventHandler,
+                        eventListener,
+                        DefaultAudioSink(
+                            AudioCapabilities.getCapabilities(context),
+                            arrayOf(fftAudioProcessor)
+                        )
+                    )
+                )
+
+                super.buildAudioRenderers(
+                    context,
+                    extensionRendererMode,
+                    mediaCodecSelector,
+                    enableDecoderFallback,
+                    audioSink,
+                    eventHandler,
+                    eventListener,
+                    out
+                )
+            }
+        }
+        ExoPlayer.Builder(applicationContext, renderersFactory).build()
+    }
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
+    private val radioAdapter by lazy {
+        RadioListAdapter {
+            playMedia(it)
+        }
+    }
     private val playbackStateListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {
             when (playbackState) {
@@ -32,6 +81,17 @@ class HomeActivity : Activity() {
         override fun onPlayerError(error: PlaybackException) {
             super.onPlayerError(error)
             Log.d("TAG", "changed state to ${error.toString()}")
+        }
+    }
+
+    private fun playMedia(data: RadioData) {
+        binding.titleTv.text = data.name.lowercase()
+        with(_player) {
+            clearMediaItems()
+            val mediaItem: MediaItem = MediaItem.fromUri(Uri.parse(data.url))
+            setMediaItem(mediaItem)
+            prepare()
+            play()
         }
     }
 
@@ -49,22 +109,22 @@ class HomeActivity : Activity() {
         }
         setContentView(binding.root)
         binding.apply {
+            rv.adapter = radioAdapter
             titleTv.setOnClickListener { _player.seekForward() }
             titleTv.isSelected = true
+            exoVisualizer.processor = fftAudioProcessor
             with(playerView) {
                 val powerOffBtn = findViewById<ImageView>(R.id.powerOffBtn)
                 powerOffBtn.setOnClickListener {
                     finish()
                 }
+                controllerHideOnTouch = false
                 player = _player
-                val mediaItem: MediaItem = MediaItem.fromUri(Uri.parse(STREAM_URL))
+                playMedia(radioList[0])
                 with(_player) {
-                    controllerHideOnTouch = false
                     controllerShowTimeoutMs = 0
                     addListener(playbackStateListener)
                     playWhenReady = true
-                    setMediaItem(mediaItem)
-                    prepare()
                 }
             }
         }
@@ -73,16 +133,5 @@ class HomeActivity : Activity() {
     override fun onDestroy() {
         super.onDestroy()
         _player.release()
-    }
-
-    companion object {
-        const val STREAM_URL = "https://air.pc.cdn.bitgravity.com/air/live/pbaudio230/chunklist.m3u8"
-            //"https://strw1.openstream.co/1451"
-    // "http://212.83.138.48:8052/stream?type=http&nocache=42"
-            //"http://s7.voscast.com:7812/;stream1662670338728/1"
-            //"https://eu10.fastcast4u.com/clubfmuae"
-            //"https://bcovlive-a.akamaihd.net/19b535b7499a4719a5c19e043063f5d9/ap-southeast-1/6034685947001/profile_1/chunklist.m3u8"
-            //"https://stream-32.zeno.fm/pbqv4u9k0k0uv?zs=ZhHW_AF_Q2aDQ3PCs2TqFw"
-        // "https://air.pc.cdn.bitgravity.com/air/live/pbaudio230/chunklist.m3u8"
     }
 }
