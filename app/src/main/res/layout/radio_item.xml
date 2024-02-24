@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:letterSpacing="0.3"
+    android:letterSpacing="0.2"
     android:layout_margin="8dp"
     android:gravity="center"
-    android:fontFamily="@font/minisystem"
+    android:fontFamily="@font/digi"
     android:textColor="#ffffff"
     android:textSize="20sp"
     tools:text="RED FM 92.7" />

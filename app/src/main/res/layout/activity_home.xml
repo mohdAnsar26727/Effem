@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:controller_layout_id="@layout/exo_control"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.93"
+        app:shutter_background_color="#00FFFFFF"
+        app:surface_type="none"
+        app:use_controller="true" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -80,18 +93,7 @@
         app:layout_constraintEnd_toEndOf="@+id/titleTv"
         app:layout_constraintTop_toTopOf="@+id/titleTv" />
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/playerView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:controller_layout_id="@layout/exo_control"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93"
-        app:shutter_background_color="#00FFFFFF"
-        app:surface_type="none"
-        app:use_controller="true" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
@@ -106,6 +108,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exoVisualizer" />
+
+    <TextView
+        android:id="@+id/privacyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/privacy_policy"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="@color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rv"
+        app:layout_constraintStart_toStartOf="@+id/rv"
+        app:layout_constraintTop_toBottomOf="@+id/playerView" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
